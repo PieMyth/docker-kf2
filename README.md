@@ -166,7 +166,7 @@ At runtime, the configuration files will be written and will include the map alo
 Building the image
 ------------------
 
-    docker build -t dwurf/docker-kf2:latest .
+    docker build -t piemyth/docker-kf2:latest .
 
 Similar projects
 ----------------
