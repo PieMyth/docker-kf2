@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Map Adder</title>
+</head>
+
+<body>
+  <h1>Welcome to the map adder, this is where you can add steam maps to your killing floor 2 server!</h1>
+  
+  <h3>Already added maps ({{ maps_count }}):</h3>
+  {% if maps != None %}
+    {% for map_entry in maps %}
+      {% for key, value in map_entry.items() %}
+        {% if key == "steamworksids" %}
+        &emsp;&emsp;&emsp;Workshop link and id : <a href="https://steamcommunity.com/sharedfiles/filedetails/?id={{value[0]}}&searchtext=" >{{ value[0] }}</a>
+        <br />
+        {% elif key == "name" %} 
+          {{ value }}
+          <br />
+        {% endif %}
+      {% endfor %}
+      <br />
+    {% endfor %}
+  {% else %}
+    <h4> No maps added, start adding some above!</h4>
+  {% endif %}
+</body>
+</html>
