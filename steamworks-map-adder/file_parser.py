@@ -33,7 +33,7 @@ class YamlReader:
                     parsed_yml[constants.Constants.custom_maps]
                 ))
                 self.logger.info("Found %d keys", len(custom_maps))
-                self.logger.info("Maps found %s", sorted(custom_maps))
+                # self.logger.info("Maps found %s", sorted(custom_maps))
         return parsed_yml
 
     def write_file(self, path = None, new_maps = list()):

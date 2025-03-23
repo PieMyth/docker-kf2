@@ -11,3 +11,4 @@ class Constants:
     name = "name"
     steam_id = "steamworksids"
     default_file_path = "../game.yml"
+    steam_workshop_url = "steamcommunity.com/sharedfiles/filedetails"

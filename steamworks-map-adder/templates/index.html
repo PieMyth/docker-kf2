@@ -5,19 +5,33 @@
   <title>Map Adder</title>
 </head>
 
+<script>
+  function add_new_map() {
+    input_value = document.getElementById("map_url").value
+    fetch("/add_map", {
+      method: "POST",
+      headers: {'Content-Type': 'application/json'}, 
+      body: JSON.stringify({
+        map_url: input_value
+      })
+    }).then(res => {
+      console.log("Request complete! response:", res);
+    });
+    return "test"
+  }
+</script>
+
 <body>
   <h1>Welcome to the map adder, this is where you can add steam maps to your killing floor 2 server!</h1>
 
   <h3>Add a map</h3>
-  <form action="/" method="POST">
-    <div>
-      <label for="map_url">What greeting do you want to say?</label>
-      <input name="map_url" id="map_url" value="" />
-    </div>
-    <div>
-      <button>Enter</button>
-    </div>
-  </form>
+  <div>
+    <label for="map_url">Steam Workshop url:</label>
+    <input name="map_url" id="map_url" value="" />
+  </div>
+  <div>
+    <input type="submit" value="Enter" onclick="add_new_map()">
+  </div>
   
   <h3>Already added maps ({{ maps_count }}):</h3>
   {% if maps != None %}
