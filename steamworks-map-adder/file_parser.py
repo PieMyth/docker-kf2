@@ -73,6 +73,7 @@ class YamlReader:
             ))
             custom_maps = list(file_contents[constants.Constants.custom_maps])
             self.logger.info("Old list %s", custom_map_ids)
+            counter = 0
             for map_entry in new_maps:
                 if map_entry[1] not in custom_map_ids:
                     self.logger.info("Adding new map to file")
@@ -81,8 +82,9 @@ class YamlReader:
                         constants.Constants.steam_id: [int(map_entry[1])]
                     })
                     updated_list = True
-            self.logger.info("Current steam map ids: %s", custom_map_ids)
-            self.logger.info("New list %s", custom_maps)
+                    counter += 1
+
+            self.logger.info("Added %d maps, new list %s", counter, custom_maps)
             if updated_list:
                 new_contents = {
                     constants.Constants.custom_maps: custom_maps

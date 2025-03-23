@@ -25,9 +25,22 @@ class Main:
         self.parser = file_parser.YamlReader()
         self.fetcher = steam_workshop_fetcher.FetchWorkshopInfo()
 
-    @app.route("/")
+    @app.route("/", methods=['GET', 'POST'])
     def home():
+        print("REQUEST")
+        # Change adder to use a different endpoint and can add multiple at once.
+        map_url = flask.request.form.get('map_url', '')
         parser = file_parser.YamlReader()
+        parser.read_file_if_available()
+        try:
+            if map_url != '':
+                fetcher = steam_workshop_fetcher.FetchWorkshopInfo()
+                result = fetcher.fetch_page(map_url)
+                print("Adding %s with steam id %d", result[0], result[1])
+                parser.write_file(new_maps=[result])
+        except Exception as err:
+            print("Ran into error")
+            print(err)
         maps_count = 0
         maps = parser.read_file_if_available()
         if maps is not None:
